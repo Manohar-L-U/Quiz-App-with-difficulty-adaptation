@@ -27,25 +27,8 @@ The core idea of the application is to dynamically adjust the difficulty of ques
 
 A simplified representation of the workflow is:
 
-flowchart TD
-    A([Start Quiz]) --> B[Display Question]
-    B --> C[User Answers the Question]
-    C --> D{Evaluate Answer}
+<img width="1190" height="1472" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/17e585bb-4296-43ff-a70f-388c333038e2" />
 
-    D -->|Correct| E[Increase / Maintain Difficulty]
-    D -->|Incorrect| F[Decrease / Maintain Difficulty]
-
-    E --> G[Next Question]
-    F --> G
-
-    G --> H{Continue Quiz?}
-    H -->|Yes| B
-    H -->|No| I([End Quiz])
-
-    style A fill:#d1fae5,stroke:#059669,color:#064e3b
-    style I fill:#fee2e2,stroke:#dc2626,color:#7f1d1d
-    style D fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
-    style H fill:#fef3c7,stroke:#d97706,color:#78350f
 
 The exact adjustment can depend on factors such as the user's recent answers, current difficulty, and quiz progression.
 
