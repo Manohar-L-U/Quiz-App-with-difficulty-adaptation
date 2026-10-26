@@ -27,44 +27,25 @@ The core idea of the application is to dynamically adjust the difficulty of ques
 
 A simplified representation of the workflow is:
 
-```text
-                ┌──────────────────┐
-                │    Start Quiz    │
-                └────────┬─────────┘
-                         │
-                         ▼
-                ┌──────────────────┐
-                │  Display Question│
-                └────────┬─────────┘
-                         │
-                         ▼
-                ┌──────────────────┐
-                │  User Answers    │
-                │   the Question   │
-                └────────┬─────────┘
-                         │
-                         ▼
-                ┌──────────────────┐
-                │ Evaluate Answer  │
-                └────────┬─────────┘
-                         │
-                ┌────────┴─────────┐
-                ▼                  ▼
-           Correct              Incorrect
-                │                  │
-                ▼                  ▼
-       Increase / Maintain   Decrease / Maintain
-          Difficulty            Difficulty
-                │                  │
-                └────────┬─────────┘
-                         ▼
-                ┌──────────────────┐
-                │  Next Question   │
-                └────────┬─────────┘
-                         │
-                         ▼
-                   Continue Quiz
-```
+flowchart TD
+    A([Start Quiz]) --> B[Display Question]
+    B --> C[User Answers the Question]
+    C --> D{Evaluate Answer}
+
+    D -->|Correct| E[Increase / Maintain Difficulty]
+    D -->|Incorrect| F[Decrease / Maintain Difficulty]
+
+    E --> G[Next Question]
+    F --> G
+
+    G --> H{Continue Quiz?}
+    H -->|Yes| B
+    H -->|No| I([End Quiz])
+
+    style A fill:#d1fae5,stroke:#059669,color:#064e3b
+    style I fill:#fee2e2,stroke:#dc2626,color:#7f1d1d
+    style D fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+    style H fill:#fef3c7,stroke:#d97706,color:#78350f
 
 The exact adjustment can depend on factors such as the user's recent answers, current difficulty, and quiz progression.
 
